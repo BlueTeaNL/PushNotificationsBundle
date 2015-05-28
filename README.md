@@ -22,4 +22,5 @@ Add the configuration to your config.yml
 
 ```
 bluetea_push_notifications:
+    
 ```
