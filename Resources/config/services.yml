@@ -1,0 +1,14 @@
+parameters:
+    push_notifications.onesignal.endpoint.notifications.class: Bluetea\PushNotifications\OneSignal\Endpoint\Notifications
+    push_notifications.appcelerator.endpoint.notifications.class: Bluetea\PushNotifications\AppCelerator\Endpoint\Notifications
+
+services:
+    push_notifications.onesignal.endpoint.notifications:
+        class: %push_notifications.onesignal.endpoint.notifications.class%
+        tags:
+            - { name: push_notifications.onesignal_endpoint }
+
+    push_notifications.onesignal.appcelerator.notifications:
+        class: %push_notifications.appcelerator.endpoint.notifications.class%
+        tags:
+            - { name: push_notifications.appcelerator_endpoint }
