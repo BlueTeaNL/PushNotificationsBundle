@@ -2,11 +2,11 @@
 
 namespace Bluetea\PushNotificationsBundle;
 
-use Bluetea\JiraRestApiBundle\DependencyInjection\Compiler\EndpointCompilerPass;
+use Bluetea\PushNotificationsBundle\DependencyInjection\Compiler\EndpointCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class BlueTeaPushNotificationsBundle extends Bundle
+class BlueteaPushNotificationsBundle extends Bundle
 {
     /**
      * Builds the bundle.
@@ -20,6 +20,7 @@ class BlueTeaPushNotificationsBundle extends Bundle
      */
     public function build(ContainerBuilder $container)
     {
+
         $container->addCompilerPass(new EndpointCompilerPass());
     }
 }

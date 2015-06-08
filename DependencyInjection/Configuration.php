@@ -57,7 +57,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('notification')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->booleanNode('isIos')->defaultValue(false)->end()
+                                ->booleanNode('isIos')->defaultValue(true)->end()
                                 ->booleanNode('isAndroid')->defaultValue(true)->end()
                                 ->booleanNode('isWP')->defaultValue(false)->end()
                                 ->scalarNode('included_segments')->defaultValue(['ALL'])->end()

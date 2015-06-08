@@ -28,6 +28,7 @@ class BlueteaPushNotificationsExtension extends Extension
             $container->setParameter('bluetea_push_notifications.onesignal.notification', $config['onesignal']['notification']);
         }
         $container->setParameter('bluetea_push_notifications.cookieFile', $config['cookieFile']);
+        $container->setParameter('bluetea_push_notifications.config', $config);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

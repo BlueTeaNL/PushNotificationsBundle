@@ -22,5 +22,5 @@
             "Bluetea\\PushNotificationsBundle": ""
         }
     },
-    "target-dir": "BlueTea/PushNotificationsBundle"
+    "target-dir": "Bluetea/PushNotificationsBundle"
 }

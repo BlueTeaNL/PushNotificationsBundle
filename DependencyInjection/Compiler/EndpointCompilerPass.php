@@ -13,7 +13,7 @@ class EndpointCompilerPass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         // Get the configuration
-        $config = $container->getExtensionConfig('bluetea_push_notifications')[0];
+        $config = $container->getParameter('bluetea_push_notifications.config');
 
         // Check if api's are defined
         if (!isset($config['api_client']) || (!isset($config['notification_service']))) {
@@ -25,24 +25,20 @@ class EndpointCompilerPass implements CompilerPassInterface
             throw new InvalidConfigurationException('Configure at least one authentication');
         }
 
-        if (isset($config['authentication']['appcelerator'])) {
-            $this->createAuthentication($container, $config['authentication']['appcelerator'], 'appcelerator');
-        }
-        if (isset($config['authentication']['onesignal'])) {
-            $this->createAuthentication($container, $config['authentication']['onesignal'], 'onesignal');
-        }
-
         // Initialize the api client
         if (!isset($config['api_client'])) {
             $config['api_client'] = 'guzzle';
         }
+
         if ($config['notification_service'] == 'appcelerator') {
+            $this->createAuthentication($container, $config['authentication']['appcelerator'], 'appcelerator');
             if (!isset($config['appcelerator']['base_url']) || !isset($config['appcelerator']['app_id'])) {
                 throw new InvalidConfigurationException('Configure appcelerator with a base url and app id');
             }
             $this->createApiClient($container, $config['api_client'], $config['appcelerator']['base_url'], 'appcelerator', $container->getParameter('bluetea_push_notifications.cookieFile'));
             $this->initializeEndpoints($container, $config['notification_service'], $config['appcelerator']['app_id'], null, $container->getParameter('bluetea_push_notifications.appcelerator.notification'));
         } elseif ($config['notification_service'] == 'onesignal') {
+            $this->createAuthentication($container, $config['authentication']['onesignal'], 'onesignal');
             if (!isset($config['onesignal']['app_id']) || !isset($config['onesignal']['base_url']) || !isset($config['onesignal']['rest_api_key'])) {
                 throw new InvalidConfigurationException('Configure onesignal with a base url, app id and rest api key');
             }
@@ -143,7 +139,7 @@ class EndpointCompilerPass implements CompilerPassInterface
                 $container->setDefinition(sprintf('push_notifications.endpoint.%s', end($serviceArray)), $endpoint);
             }
         } elseif ($availableApi == 'onesignal') {
-        // Add the onesignal api client to the push_notifications endpoint
+            // Add the onesignal api client to the push_notifications endpoint
             $taggedEndpoints = $container->findTaggedServiceIds('push_notifications.onesignal_endpoint');
             foreach ($taggedEndpoints as $serviceId => $attributes) {
                 $endpoint = $container->getDefinition($serviceId);
