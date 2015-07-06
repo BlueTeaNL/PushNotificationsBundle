@@ -1,0 +1,12 @@
+/phpunit.xml
+composer.lock
+/vendor/*
+
+# Other applications
+.DS_Store
+.idea
+.vagrant
+.buildpath
+.cache
+.project
+.settings
