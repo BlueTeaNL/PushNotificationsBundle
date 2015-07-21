@@ -67,6 +67,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('wp_sound')->defaultValue('default.wav')->end()
                                 ->scalarNode('small_icon')->defaultValue('appicon')->end()
                                 ->scalarNode('ios_badgeType')->defaultValue('None')->end()
+								->scalarNode('ios_badgeCount')->defaultValue(1)->end()
                             ->end()
                         ->end()
                     ->end()
