@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('bluetea_push_notifications', 'array');
+        $rootNode = $treeBuilder->root('bluetea_push_notifications');
 
         $rootNode
             ->addDefaultsIfNotSet()
@@ -27,7 +27,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue('guzzle')
                 ->end()
                 ->enumNode('notification_service')
-                    ->defaultValue('appcelerator')
+                    ->defaultValue('onesignal')
                     ->values(array('appcelerator', 'onesignal'))
                 ->end()
                 ->scalarNode('cookieFile')
@@ -50,10 +50,11 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->arrayNode('onesignal')
+                    ->addDefaultsIfNotSet()
                     ->children()
-                        ->scalarNode('app_id')->end()
-                        ->scalarNode('base_url')->end()
-                        ->scalarNode('rest_api_key')->end()
+                        ->scalarNode('app_id')->defaultValue('')->end()
+                        ->scalarNode('base_url')->defaultValue('https://onesignal.com/api/v1/')->end()
+                        ->scalarNode('rest_api_key')->defaultValue('')->end()
                         ->arrayNode('notification')
                             ->addDefaultsIfNotSet()
                             ->children()
@@ -73,8 +74,10 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->arrayNode('authentication')
+                    ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('appcelerator')
+                            ->addDefaultsIfNotSet()
                             ->children()
                                 ->enumNode('type')
                                     ->defaultValue('basic')
@@ -85,6 +88,7 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         ->arrayNode('onesignal')
+                            ->addDefaultsIfNotSet()
                             ->children()
                                 ->enumNode('type')
                                     ->defaultValue('anonymous')
