@@ -55,6 +55,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('app_id')->defaultValue('')->end()
                         ->scalarNode('base_url')->defaultValue('https://onesignal.com/api/v1/')->end()
                         ->scalarNode('rest_api_key')->defaultValue('')->end()
+                        ->scalarNode('user_auth_key')->defaultValue('')->end()
                         ->arrayNode('notification')
                             ->addDefaultsIfNotSet()
                             ->children()
