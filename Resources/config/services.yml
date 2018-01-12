@@ -6,21 +6,21 @@ parameters:
 
 services:
     push_notifications.onesignal.endpoint.notifications:
-        class: %push_notifications.onesignal.endpoint.notifications.class%
+        class: "%push_notifications.onesignal.endpoint.notifications.class%"
         tags:
             - { name: push_notifications.onesignal_endpoint }
 
     push_notifications.onesignal.endpoint.players:
-        class: %push_notifications.onesignal.endpoint.players.class%
+        class: "%push_notifications.onesignal.endpoint.players.class%"
         tags:
             - { name: push_notifications.onesignal_endpoint }
 
     push_notifications.onesignal.endpoint.apps:
-        class: %push_notifications.onesignal.endpoint.apps.class%
+        class: "%push_notifications.onesignal.endpoint.apps.class%"
         tags:
             - { name: push_notifications.onesignal_endpoint }
 
     push_notifications.appcelerator.notifications:
-        class: %push_notifications.appcelerator.endpoint.notifications.class%
+        class: "%push_notifications.appcelerator.endpoint.notifications.class%"
         tags:
             - { name: push_notifications.appcelerator_endpoint }
