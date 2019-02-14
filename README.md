@@ -1,3 +1,5 @@
+# ARCHIVED
+
 BlueTea Push Notifications for Symfony2
 ==========================
 
