@@ -1,4 +1,4 @@
-# ARCHIVED
+# ARCHIVED - DO NOT USE
 
 BlueTea Push Notifications for Symfony2
 ==========================
